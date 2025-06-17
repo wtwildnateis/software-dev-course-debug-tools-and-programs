@@ -6,17 +6,19 @@ const cart = [
 
 function calculateTotal(cartItems) {
   let total = 0;
-  for (let i = 0; i < cartItems.length; i++) { // Fixed: Changed <= to <
-    debugger;
+  for (let i = 0; i < cartItems.length; i++) { 
+    // debugger; // Used: debugger to inspect loop behavior during error testing
+
     total += cartItems[i].price;
   }
-  return total;
+  return total; // Fixed: Changed loop condition from i <= cartItems.length to i < cartItems.length to avoid undefined access
 }
 
 function applyDiscount(total, discountRate) {
   if (typeof discountRate !== "number" || discountRate < 0 || discountRate > 1) {
-    console.warn("Invalid discountRate. Must be between 0 and 1.");
-    return total; // Fixed: Prevent invalid discounts
+    console.warn("Invalid discountRate. Must be between 0 and 1."); // Used: console.warn() along with console.log() to trace values and invalid input behavior
+
+    return total; // Fixed: Added input validation to ensure discountRate is between 0 and 1
   }
   return total - total * discountRate;
 }
@@ -31,7 +33,8 @@ function generateReceipt(cartItems, total) {
     receipt += `${item.name}: $${item.price.toFixed(2)}\n`;
   });
   receipt += `Total: $${total.toFixed(2)}`;
-  return receipt;
+  return receipt; // Fixed: Added check to ensure total is a valid number before calling toFixed()
+
 }
 
 // Debugging entry point
@@ -63,3 +66,12 @@ console.log(applyDiscount(100, 1)); // 0
 
 console.log("Invalid Discount Test:");
 console.log(applyDiscount(100, -0.5)); // warning + 100
+
+
+/*
+How Developer Tools Helped Me!
+
+Console Tab helped Me identify a runtime error caused by accessing `cartItems[i]` out of bounds.
+Call Stack traced the error back to `calculateTotal()` function when rendering the DOM.
+Sources Tab allowed placing breakpoints inside loops to inspect each iteration step-by-step.
+The "debugger" keyword let me freeze execution and check variable values directly.
