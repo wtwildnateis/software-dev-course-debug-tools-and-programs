@@ -1,14 +1,3 @@
-How Developer Tools helped!
-
-- **Console Tab** helped identify a runtime error caused by accessing `cartItems[i]` out of bounds.
-- **Call Stack** traced the error back to `calculateTotal()` function when rendering the DOM.
-- **Sources Tab** allowed placing breakpoints inside loops to inspect each iteration step-by-step.
-- The **debugger** keyword let us freeze execution and check variable values directly.
-- **Edge cases** like empty carts and invalid discounts were tested through Console to ensure robust behavior.
-
-
-
-
 # 🛠️ Debugging Practice: E-Commerce Application
 
 ## 🎯 Objective
